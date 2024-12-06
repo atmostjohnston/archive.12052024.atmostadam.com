@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Software Development: atmostadam</title>
+  <meta name="description"
+    content="Adam Johnston games and javascript showcase including breakout, top down 2d rpg, mine clicker, family development, demos and teaching classes">
+  <link rel="stylesheet" type="text/css" href="./../css/style.css">
+</head>
+
+<body>
+  <canvas id="game-canvas"></canvas>
+
+  <!--
+  <div id="game-wrapper">
+    <label for="tile-id">TILE ID:</label>
+    <input type="text" id="tile-id" />
+    <label for="image-id">IMAGE ID:</label>
+    <input type="text" id="image-id" />
+    <label for="image-width">IMAGE WIDTH:</label>
+    <input type="text" id="image-width" />
+    <label for="image-height">IMAGE HEIGHT:</label>
+    <input type="text" id="image-height" />
+    <label for="crop-at-x">CROP AT X:</label>
+    <input type="text" id="crop-at-x" />
+    <label for="crop-at-y">CROP AT Y:</label>
+    <input type="text" id="crop-at-y" />
+    <label for="tile-width">TILE WIDTH:</label>
+    <input type="text" id="tile-width" />
+    <label for="tile-height">TILE HEIGHT:</label>
+    <input type="text" id="tile-height" />
+    <input type="submit" id="submit" value="Generate Code" />
+    <label for="generated-code">GENERATED CODE:</label>
+    <textarea id="generated-code" rows="26" cols="42"></textarea>
+  </div>
+-->
+
+  <!-- IMAGES/ASSETS -->
+  <!--
+  <img id="Heart" />
+  <img id="heart" />
+  <img id="successfulHunt" />
+  <img id="ham" />
+  <img id="meat" />
+-->
+
+  <!-- IMAGES/CATS -->
+  <!--
+  <img id="Socks" />
+  <img id="Spooky" />
+  <img id="Spree" />
+  <img id="Whiskers" />
+  <img id="Bandit" />
+  <img id="Breezy" />
+  <img id="Cocoa" />
+  <img id="Cowie" />
+  <img id="Dottie" />
+  <img id="Eve" />
+  <img id="Frosty" />
+  <img id="Ginger" />
+  <img id="Gozer" />
+  <img id="Kitkat" />
+  <img id="Marshmellow" />
+  <img id="Peaches" />
+  <img id="Pepper" />
+-->
+
+  <!--
+  <img id="Socks" height="500" width="500" />
+  <img id="Spooky" height="500" width="500" />
+  <img id="Spree" height="500" width="500" />
+  <img id="Whiskers" height="500" width="500" />
+  <img id="Bandit" height="500" width="500" />
+  <img id="Breezy" height="500" width="500" />
+  <img id="Cocoa" height="500" width="500" />
+  <img id="Cowie" height="500" width="500" />
+  <img id="Dottie" height="500" width="500" />
+  <img id="Eve" height="500" width="500" />
+  <img id="Frosty" height="500" width="500" />
+  <img id="Ginger" height="500" width="500" />
+  <img id="Gozer" height="500" width="500" />
+  <img id="Kitkat" height="500" width="500" />
+  <img id="Marshmellow" height="500" width="500" />
+  <img id="Peaches" height="500" width="500" />
+  <img id="Pepper" height="500" width="500" />
+    -->
+
+  <!-- IMAGES/CATS/PORTRAIT -->
+  <!--
+  <img id="breezyPortrait" />
+  <img id="banditPortrait" />
+  <img id="cowiePortrait" />
+  <img id="spreePortrait" />
+  <img id="cocoaPortrait" />
+  <img id="dottiePortrait" />
+  <img id="frostyPortrait" />
+  <img id="peachesPortrait" />
+  <img id="kitkatPortrait" />
+  <img id="evePortrait" />
+  <img id="ganachePortrait" />
+  <img id="gingerPortrait" />
+  <img id="gozerPortrait" />
+  <img id="marshmellowPortrait" />
+  <img id="mistyPortrait" />
+  <img id="pepperPortrait" />
+  <img id="socksPortrait" />
+  <img id="spookyPortrait" />
+  <img id="whiskersPortrait" />
+-->
+
+  <!-- IMAGES/CATS/PIXEL -->
+  <!--
+  <img id="breezyPixel" />
+  <img id="banditPixel" />
+  <img id="cowiePixel" />
+  <img id="spreePixel" />
+  <img id="cocoaPixel" />
+  <img id="dottiePixel" />
+  <img id="frostyPixel" />
+  <img id="peachesPixel" />
+  <img id="kitkatPixel" />
+  <img id="evePixel" />
+  <img id="ganachePixel" />
+  <img id="gingerPixel" />
+  <img id="gozerPixel" />
+  <img id="marshmellowPixel" />
+  <img id="mistyPixel" />
+  <img id="pepperPixel" />
+  <img id="socksPixel" />
+  <img id="spookyPixel" />
+  <img id="whiskersPixel" />
+-->
+
+  <!-- IMAGES/CATS/OPPONENTS/PORTRAIT -->
+  <!--
+  <img id="chickenPortrait" />
+  <img id="snakePortrait" />
+  <img id="squirrelPortrait" />
+-->
+
+  <!-- IMAGES/CATS/OPPONENTS/PIXEL -->
+  <!--
+  <img id="chickenPixel" />
+  <img id="snakePixel" />
+  <img id="squirrelPixel" />
+-->
+
+  <!-- IMAGES/DOD -->
+  <!--
+  <img id="arnold" />
+  <img id="arnoldClick" />
+  <img id="arnoldUnclick" />
+-->
+
+  <!-- IMAGES/INTRO -->
+  <!--
+  <img id="title" />
+  <img id="rachel" />
+  <img id="nathan" />
+  <img id="dad" />
+  <img id="mom" />
+-->
+
+  <!-- IMAGES/MINE -->
+  <!--
+  <img id="OreSpritesheet" />
+  <img id="MineSpritesheet" />
+  <img id="ToolsSpritesheet" />
+  <img id="InteriorTileset" />
+  <img id="CopperCoin" />
+  <img id="SilverCoin" />
+  <img id="GoldCoin" />
+  <img id="Pickaxe" />
+  <img id="Hammer" />
+  <img id="Shovel" />
+  <img id="Sword" />
+  <img id="Helm" />
+  <img id="Anvil" />
+  <img id="BlueFlameShopkeep" />
+  <img id="PinkSparkle" />
+  <img id="BlueSparkle" />
+  <img id="GreenSparkle" />
+  <img id="YellowSparkle" />
+  <img id="WhiteSparkle" />
+  <img id="FlameBackground" />
+  <img id="MineShaftBackground" />
+  <img id="AnvilHammerSpark" />
+  <img id="Market" />
+  <img id="Backpack" />
+  <img id="MineCart" />
+
+  <img id="CopperCoin" />
+  <img id="SilverCoin" />
+  <img id="GoldCoin" />
+  <img id="GemTileset" />
+  <img id="Crystal" />
+  <img id="CutEmerald" />
+  <img id="CutRuby" />
+  <img id="CutSapphire" />
+  <img id="CutTopaz" />
+  <img id="Diamond" />
+  <img id="Emerald" />
+  <img id="Obsidian" />
+  <img id="Pearl" />
+  <img id="Ruby" />
+  <img id="Sapphire" />
+  <img id="Topaz" />
+-->
+
+  <!--
+  <img id="CopperCoin" height="32" width="32" />
+  <img id="SilverCoin" height="32" width="32" />
+  <img id="GoldCoin" height="32" width="32" />
+  <img id="GemTileset" />
+  <img id="Crystal" height="32" width="32" />
+  <img id="CutEmerald" height="32" width="32" />
+  <img id="CutRuby" height="32" width="32" />
+  <img id="CutSapphire" height="32" width="32" />
+  <img id="CutTopaz" height="32" width="32" />
+  <img id="Diamond" height="32" width="32" />
+  <img id="Emerald" height="32" width="32" />
+  <img id="Obsidian" height="32" width="32" />
+  <img id="Pearl" height="32" width="32" />
+  <img id="Ruby" height="32" width="32" />
+  <img id="Sapphire" height="32" width="32" />
+  <img id="Topaz" height="32" width="32" />
+  -->
+
+  <!-- IMAGES/PIXEL-CHARACTER-SPRITESHEETS -->
+  <!--
+  <img id="People3" />
+  <img id="HeroSpritesheet" />
+-->
+
+
+  <!-- IMAGES/PIXEL-DUNGEON-TILESETS -->
+  <!--
+  <img id="TilesetDungeonA2" />
+-->
+
+  <!-- IMAGES/PIXEL-INTERIOR-TILESETS -->
+  <!--
+  <img id="TileDB" />
+-->
+
+  <!-- IMAGES/PIXEL-OUTDOORS -->
+  <!--
+  <img id="nftile1" />
+  <img id="nftile2" />
+  <img id="nftile3" />
+  <img id="nftile4" />
+  <img id="nftile5" />
+  <img id="nftile6" />
+  <img id="nftile7" />
+  <img id="nftile8" />
+  <img id="nftile9" />
+  <img id="nftile10" />
+  <img id="nftile11" />
+  <img id="nftile12" />
+  <img id="nftile13" />
+  <img id="nftile14" />
+  <img id="nftile15" />
+  -->
+
+  <!-- IMAGES/TILESHEETS -->
+  <!--
+  <img id="TilesetField" />
+  <img id="TilesetNature" />
+  -->
+
+  <!-- IMAGES/CATS -->
+  <!-- images/cats/backgrounds/maps -->
+  <!--
+  <img id="mooncat" />
+  <img id="grassland" />
+  <img id="Sunset" />
+  <img id="tokyo" />
+  -->
+
+  <!-- IMAGES/MINE -->
+  <!-- images/mine/backgrounds -->
+  <!--
+  <img id="TanBackground" width="2047" height="1374" />
+  -->
+
+  <!-- IMAGES/TOWER -->
+  <!-- images/tower/enemies -->
+  <!--
+  <img id="Rat1Right" />
+  <img id="Rat1Left" />
+  <img id="Rat1Down" />
+  <img id="Rat1Up" />
+  -->
+
+  <!-- images/tower/towers/tilesets -->
+  <!-- 
+  <img id="ArabianNights-TileB" />
+  -->
+
+  <!-- images/tower/tiles/tiles -->
+  <!-- 
+  <img id="Toprightcorner" />
+  <img id="Topcornerleft" />
+  <img id="Bottomrightcorner" />
+  <img id="Bottomleftcorner" />
+  -->
+
+  <!-- images/tower/tiles/tilesets -->
+  <!-- 
+  <img id="Outside_A1" />
+  <img id="Outside_A2" />
+  <img id="World_B" />
+  <img id="Outside1" />
+  <img id="Outside2" />
+  <img id="Outside3" />
+  <img id="Outside4" />
+  <img id="Outside5" />
+  <img id="Outside6" />
+  <img id="Outside7" />
+  <img id="Outside8" />
+  <img id="Outside9" />
+  <img id="Outside10" />
+  <img id="Outside11" />
+  <img id="Outside12" />
+  <img id="Outside13" />
+  <img id="Outside14" />
+  <img id="Outside15" />
+  <img id="Outside16" />
+  <img id="Outside17" />
+  <img id="Outside18" />
+  <img id="Outside19" />
+  <img id="Outside20" />
+  <img id="Outside21" />
+  <img id="Outside22" />
+  <img id="Outside23" />
+  <img id="Outside24" />
+  <img id="Outside25" />
+  <img id="Outside26" />
+  <img id="Outside27" />
+  <img id="Outside28" />
+  <img id="Outside29" />
+  <img id="Outside30" />
+  <img id="Outside31" />
+  <img id="Outside32" />
+  <img id="Outside33" />
+  <img id="Outside34" />
+  <img id="Outside35" />
+  <img id="Outside36" />
+  <img id="Outside37" />
+  <img id="Outside38" />
+  <img id="Outside39" />
+  <img id="Outside40" />
+  <img id="Outside41" />
+  <img id="Outside42" />
+  <img id="Outside43" />
+  <img id="Outside44" />
+  <img id="Outside45" />
+  <img id="Outside46" />
+  <img id="Outside47" />
+  <img id="Outside48" />
+  <img id="Outside49" />
+  <img id="Outside50" />
+  <img id="Outside51" />
+  <img id="Outside52" />
+  <img id="Outside53" />
+  -->
+
+  <!-- images/attacks/ -->
+  <!-- 
+  <img id="FireProjectile1" />
+  <img id="FireProjectile2" />
+  <img id="FireProjectile3" />
+  <img id="IceProjectile1" />
+  <img id="IceProjectile2" />
+  <img id="IceProjectile3" />
+  <img id="IceProjectile4" />
+  <img id="LightningProjectile1" />
+  <img id="LightningProjectile2" />
+  <img id="LightningProjectile3" />
+  <img id="WaterProjectile1" />
+  <img id="WaterProjectile2" />
+  <img id="FireExplosion1" />
+  <img id="IceExplosion1" />
+  <img id="LightningExplosion1" />
+  <img id="WaterExplosion1" />
+-->
+  <script type="module" src="./js/GameChoice.js"></script>
+  <script type="module" src="./boot/boot.js"></script>
+</body>
+
+</html>

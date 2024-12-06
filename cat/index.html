@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Cat Life Game - Dad's Software Development</title>
+  <link rel="stylesheet" type="text/css" href="./../css/style.css">
+</head>
+
+<body>
+  <canvas id="game-canvas"></canvas>
+
+  <link rel="preload" href="./images/opensource/backgrounds/BackgroundTitle.png" as="image">
+  <link rel="preload" href="./images/opensource/backgrounds/BackgroundRachel.png" as="image">
+  <link rel="preload" href="./images/opensource/backgrounds/BackgroundNathan.png" as="image">
+  <link rel="preload" href="./images/opensource/backgrounds/BackgroundDad.png" as="image">
+  <link rel="preload" href="./images/opensource/backgrounds/BackgroundMom.png" as="image">
+
+  <link rel="preload" href="./images/opensource/cats/pixel/BanditCatPixel.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/pixel/BreezyCatPixel.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/pixel/CocoaCatPixel.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/pixel/CowieCatPixel.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/pixel/DottieCatPixel.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/pixel/EveCatPixel.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/pixel/FrostyCatPixel.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/pixel/GanacheCatPixel.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/pixel/GingerCatPixel.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/pixel/GozerCatPixel.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/pixel/KitkatCatPixel.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/pixel/MarshmellowCatPixel.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/pixel/MistyCatPixel.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/pixel/PeachesCatPixel.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/pixel/PepperCatPixel.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/pixel/SocksCatPixel.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/pixel/SpookyCatPixel.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/pixel/SpreeCatPixel.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/pixel/WhiskersCatPixel.png" as="image">
+
+  <link rel="preload" href="./images/opensource/cats/portrait/BanditCatPortrait.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/portrait/BreezyCatPortrait.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/portrait/CocoaCatPortrait.jpg" as="image">
+  <link rel="preload" href="./images/opensource/cats/portrait/CowieCatPortrait.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/portrait/DottieCatPortrait.jpg" as="image">
+  <link rel="preload" href="./images/opensource/cats/portrait/EveCatPortrait.jpg" as="image">
+  <link rel="preload" href="./images/opensource/cats/portrait/FrostyCatPortrait.jpg" as="image">
+  <link rel="preload" href="./images/opensource/cats/portrait/GanacheCatPortrait.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/portrait/GingerCatPortrait.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/portrait/GozerCatPortrait.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/portrait/KitkatCatPortrait.jpg" as="image">
+  <link rel="preload" href="./images/opensource/cats/portrait/MarshmellowCatPortrait.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/portrait/MistyCatPortrait.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/portrait/PeachesCatPortrait.jpg" as="image">
+  <link rel="preload" href="./images/opensource/cats/portrait/PepperCatPortrait.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/portrait/SocksCatPortrait.jpg" as="image">
+  <link rel="preload" href="./images/opensource/cats/portrait/SpookyCatPortrait.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/portrait/SpreeCatPortrait.png" as="image">
+  <link rel="preload" href="./images/opensource/cats/portrait/WhiskersCatPortrait.png" as="image">
+
+  <link rel="preload" href="./images/opensource/attack/ClawSymbol.png" as="image">
+  <link rel="preload" href="./images/opensource/attack/BiteSymbol.png" as="image">
+  <link rel="preload" href="./images/opensource/attack/PuffSymbol.png" as="image">
+  <link rel="preload" href="./images/opensource/attack/PounceSymbol.png" as="image">
+  <link rel="preload" href="./images/opensource/attack/ClawSlashRight.png" as="image">
+  <link rel="preload" href="./images/opensource/attack/ClawSlashLeft.png" as="image">
+  <link rel="preload" href="./images/opensource/attack/BiteLowerJaw.png" as="image">
+  <link rel="preload" href="./images/opensource/attack/BiteUpperJaw.png" as="image">
+
+  <link rel="preload" href="./images/opensource/opponents/pixel/ChickenOpponentPixel.png" as="image">
+  <link rel="preload" href="./images/opensource/opponents/pixel/SnakeOpponentPixel.png" as="image">
+  <link rel="preload" href="./images/opensource/opponents/pixel/SquirrelOpponentPixel.png" as="image">
+
+  <link rel="preload" href="./images/opensource/opponents/portrait/ChickenOpponentPortrait.png" as="image">
+  <link rel="preload" href="./images/opensource/opponents/portrait/SnakeOpponentPortrait.png" as="image">
+  <link rel="preload" href="./images/opensource/opponents/portrait/SquirrelOpponentPortrait.png" as="image">
+
+  <link rel="preload" href="./images/opensource/backgrounds/mooncat.png" as="image">
+  <link rel="preload" href="./images/opensource/backgrounds/grassland.png" as="image">
+  <link rel="preload" href="./images/opensource/backgrounds/Sunset.png" as="image">
+  <link rel="preload" href="./images/opensource/backgrounds/tokyo.png" as="image">
+
+  <img id="BackgroundTitle" />
+  <img id="BackgroundRachel" />
+  <img id="BackgroundNathan" />
+  <img id="BackgroundDad" />
+  <img id="BackgroundMom" />
+
+  <img id="BanditCatPixel" />
+  <img id="BreezyCatPixel" />
+  <img id="CocoaCatPixel" />
+  <img id="CowieCatPixel" />
+  <img id="DottieCatPixel" />
+  <img id="EveCatPixel" />
+  <img id="FrostyCatPixel" />
+  <img id="GanacheCatPixel" />
+  <img id="GingerCatPixel" />
+  <img id="GozerCatPixel" />
+  <img id="KitkatCatPixel" />
+  <img id="MarshmellowCatPixel" />
+  <img id="MistyCatPixel" />
+  <img id="PeachesCatPixel" />
+  <img id="PepperCatPixel" />
+  <img id="SocksCatPixel" />
+  <img id="SpookyCatPixel" />
+  <img id="SpreeCatPixel" />
+  <img id="WhiskersCatPixel" />
+
+  <img id="BanditCatPortrait" />
+  <img id="BreezyCatPortrait" />
+  <img id="CocoaCatPortrait" />
+  <img id="CowieCatPortrait" />
+  <img id="DottieCatPortrait" />
+  <img id="EveCatPortrait" />
+  <img id="FrostyCatPortrait" />
+  <img id="GanacheCatPortrait" />
+  <img id="GingerCatPortrait" />
+  <img id="GozerCatPortrait" />
+  <img id="KitkatCatPortrait" />
+  <img id="MarshmellowCatPortrait" />
+  <img id="MistyCatPortrait" />
+  <img id="PeachesCatPortrait" />
+  <img id="PepperCatPortrait" />
+  <img id="SocksCatPortrait" />
+  <img id="SpookyCatPortrait" />
+  <img id="SpreeCatPortrait" />
+  <img id="WhiskersCatPortrait" />
+
+  <img id="ClawSymbol" />
+  <img id="BiteSymbol" />
+  <img id="PuffSymbol" />
+  <img id="PounceSymbol" />
+
+  <img id="ClawSlashRight" />
+  <img id="ClawSlashLeft" />
+  <img id="BiteLowerJaw" />
+  <img id="BiteUpperJaw" />
+
+  <img id="TilesetField" />
+  <img id="TilesetNature" />
+  <img id="HeroSpritesheet" />
+
+  <img id="ChickenOpponentPixel" />
+  <img id="SnakeOpponentPixel" />
+  <img id="SquirrelOpponentPixel" />
+
+  <img id="ChickenOpponentPortrait" />
+  <img id="SnakeOpponentPortrait" />
+  <img id="SquirrelOpponentPortrait" />
+
+  <img id="mooncat" />
+  <img id="grassland" />
+  <img id="Sunset" />
+  <img id="tokyo" />
+
+  <script type="module" src="./js/CatGameLoop.js"></script>
+  <script type="module" src="./../boot/boot.js"></script>
+</body>
+
+</html>

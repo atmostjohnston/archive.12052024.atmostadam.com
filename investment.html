@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TOP CHEF JR.</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/default.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const HISTORICAL_NYSE_RATE = 0.10;
+      const HISTORICAL_HEDGE_FUND_RATE = 0.137;
+      const FINANCIAL_ADVISOR_FEES = -0.01;
+      const HEDGE_FUND_FEES = -0.016;
+      const ETF_FEES = -0.006;
+      const CAPITAL_GAINS_TAX = -0.15;
+      const INCOME_TAX = -0.28;
+
+      class Investment {
+        constructor(name, rate, worth, taxes, fees, familyOwns, special) {
+          this.name = name;
+          this.rate = rate;
+          this.worth = worth;
+          this.taxes = taxes;
+          this.fees = fees;
+          this.familyOwns = familyOwns;
+          this.special = special;
+        }
+      }
+      
+      let investments = [
+        new Investment("PhD Degree", 1, "$1.5 million", CAPITAL_GAINS_TAX, ETF_FEES, true, "Payback starts immediately"),
+        new Investment("Master's Degree", 1, "$15,490,739", CAPITAL_GAINS_TAX, ETF_FEES, true, "Payback starts immediately"),
+        new Investment("Bachelor’s Degree", 1, "$9,958,333", CAPITAL_GAINS_TAX, ETF_FEES, true, "Payback starts immediately"),
+        new Investment("Hedge Funds", HISTORICAL_HEDGE_FUND_RATE, "*", CAPITAL_GAINS_TAX, HEDGE_FUND_FEES, false, "Requires $2,000,000+ initial investment"),
+        new Investment("529 College Savings Plan", HISTORICAL_NYSE_RATE, "*", 0, ETF_FEES, true, "No Taxes, No Fees, Investment is a Tax Write-Off, Can only be spent on Education"),
+        new Investment("Roth IRA Retirement Plan", HISTORICAL_NYSE_RATE, "*", 0, ETF_FEES, true, "No Taxes on Interest. Max of $5,500 per year."),
+        new Investment("401k Retirement Plan", HISTORICAL_NYSE_RATE, "*", 0, ETF_FEES, true, "No Taxes Until Age 60. Max of $19,000 per year."),
+        new Investment("Personal Diversified Stock Portfolio", HISTORICAL_NYSE_RATE, null, CAPITAL_GAINS_TAX, ETF_FEES, true, ""),
+        new Investment("Financial Advisor Diversified Stock Portfolio", HISTORICAL_NYSE_RATE, null, CAPITAL_GAINS_TAX, FINANCIAL_ADVISOR_FEES, false, ""),
+        new Investment("Gold", 0.0778, "*", CAPITAL_GAINS_TAX, -0.25, false, "Cost: 25% when buying; 12% when selling. Average 10-year return on gold was 0.92%"),
+        new Investment("Platinum", 0.028, null, CAPITAL_GAINS_TAX, -0.25, false, "Cost: 25% when buying; 12% when selling. 10-year best average, the rate of return for this precious metal jumps to 13.2%"),
+        new Investment("Diamonds", 0.064, null, CAPITAL_GAINS_TAX, -0.25, false, "Cost: 25% when buying; 12% when selling. Average annual real rate of return on white diamonds was 6.4%, while that on diamonds in fancy colors was 2.9%"),
+        new Investment("Paintings", 0.053, null, CAPITAL_GAINS_TAX, -0.25, false, "Cost: 25% when buying; 10% when selling. Over the past 20 years, the Mei Moses World All Art Index posted a compounded annual return of 5.3%"),
+        new Investment("Commodities", -0.05, null, CAPITAL_GAINS_TAX, ETF_FEES, false, "Approximately -5% in recent years. Requires an accountant as livestock tax forms are complicated."),
+        new Investment("International Diversified Portfolio", 0.05, "*", CAPITAL_GAINS_TAX, ETF_FEES, true, "Mom & Dad Only Make Minor Investments, but must pay foreign taxes."),
+        new Investment("International Emerging Market Stocks", 0.0326, "*", CAPITAL_GAINS_TAX, ETF_FEES, true, "Mom & Dad Only Make Minor Investments, but must pay foreign taxes."),
+        new Investment("CDs", 0.05, null, CAPITAL_GAINS_TAX, 0, false, ""),
+        new Investment("Options", 0, "$50,000", CAPITAL_GAINS_TAX, 0, false, "Avoid. This is simliar to gambling. Approximately 60% AI Algorithms."),
+        new Investment("Junk Bonds", 0.042, null, CAPITAL_GAINS_TAX, ETF_FEES, false, ""),
+        new Investment("Crypto Currency", -0.1577, null, CAPITAL_GAINS_TAX, ETF_FEES, false, ""),
+        new Investment("Savings Account", 0.02, null, INCOME_TAX, 0, true, ""),
+        new Investment("Lock it in a Safe", 0, "$50,000", 0, 0, false, ""),
+        new Investment("Checking Account", 0, "$50,000", 0, 0, true, ""),
+        new Investment("Foreign Exchange Currency Trading", 0.02, null, CAPITAL_GAINS_TAX, 0, false, "This should not be done by individuals. Instead, this is a full time career in Finance to trade millions or billions of currency at a time. Leave this to financial institutions, governments and oil companies."),
+        new Investment("Time-Shares", -1, null, -0.32, -1, true,  "Avoid. This is a lifetime liability and a Cost NOT an Investment."),
+        new Investment("Life Insurance Policy", 0.01, null, -0.28, 0, false, ""),
+        new Investment("Treasury Bills", 0.0377, null, -0.28, false, ""),
+        new Investment("Short Term Government bonds", 0.032, null, -0.28, 0, false, ""),
+        new Investment("Long Term Government bonds", 0.0554, null, -0.28, 0, false, ""),
+        new Investment("Corporate Bonds", 0.0602, null, -0.28, 0, false, ""),
+        new Investment("Loan to family member", 0.09, null, -0.28, -0.42, false, "Legally, you must charge at least 9% interest or pay taxes (applicable federal rate).  42% never pay back."),
+        new Investment("Rental House", 0, null,  -0.28, 0, false, "Real Estate Fees, Property Taxes, Property Management, Mortgage Interest, Tenant Damage, Accountant for Tax Breaks. Can improve investment in a hedge situation, tax breaks or full time job."),
+        new Investment("Junk Bonds", 0.042, null, -0.28, 0, false, ""),
+        new Investment("Start a Business", -0.70, null, -0.21, 0, false, "7 of 10 businesses fail. However, a brilliant idea is always worth persuing and the right entrepreneur can get close to a 100% chance of success. A very, very small chance to become rich, but more people lose everything."),
+        new Investment("Venture Capital", 0.25, null, -0.21, 0, false, "Requires $100,000,000 to start"),
+        new Investment("House", 0, null, -0.0774, -0.0099, "With only appropriate upgrades, they can make money after house is paid off.  Will lose lots of money while there is a mortgage."),
+        new Investment("Car", -0.12, null, -0.066, -0.09, "")
+      ];
+
+      function calculateCompoundInterest(principal, rate, time) {
+        var total = principal * Math.pow(1 + rate / 100, time);
+        
+        return total.toLocaleString("en-US",
+        {
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0
+        })
+      }
+
+      function createCompoundInterestGraph(newChartName, principal, interestRate, time) {
+        // Create an array to store the values of the principal over time.
+        var values = [];
+        
+        // Iterate over the time period.
+        for (var i = 0; i < time; i++) {
+          // Calculate the new principal value.
+          var newPrincipal = principal * (1 + interestRate / 100) ** i;
+          // Add the new principal value to the array.
+          values.push(newPrincipal);
+        }
+        
+        // Create a chart object.
+        var chart = new Chart(document.getElementById(newChartName), {
+          type: "line",
+          data: {
+            labels: [...Array(time).keys()],
+            datasets: [{
+              data: values,
+              fill: false,
+              lineTension: 0.1,
+              color: "blue"
+            }]
+          },
+          options: {
+            title: "Compound Interest Graph",
+            xAxisLabel: "Time (years)",
+            yAxisLabel: "Principal (\$)",
+            legend: {
+              display: false
+            }
+          }
+        });
+      } 
+
+      function createTD(newTR, cellData, rate) {
+        var newTD = document.createElement("td");
+        if(rate > 0) {
+          newTD.style.color = "green";
+          newTD.style.fontWeight = "bold";
+        } else if(rate < 0) {
+          newTD.style.color = "red";
+          newTD.style.fontWeight = "bold";
+        } else {
+          newTD.style.color = "black";
+        }
+        newTD.appendChild(document.createTextNode(cellData));
+        newTR.appendChild(newTD);
+      }
+
+      function createRows() {
+        investments.forEach(rowData => {
+          var newTR = document.createElement("tr");
+          createTD(newTR, rowData.name);
+          createTD(newTR, (rowData.rate * 100).toFixed(2) + "%", rowData.rate);
+          if(null === rowData.worth) {
+            createTD(newTR, "$" + calculateCompoundInterest(50000, rowData.rate * 100, 40), rowData.rate);
+          } else if("*" === rowData.worth) {
+            createTD(newTR, "$" + calculateCompoundInterest(50000, rowData.rate * 100, 40) + "*", rowData.rate);
+          } else {
+            createTD(newTR, rowData.worth, rowData.rate);
+          }
+          createTD(newTR, (rowData.taxes * 100).toFixed(2) + "%", rowData.taxes);
+          createTD(newTR, (rowData.fees * 100).toFixed(2) + "%", rowData.fees);
+          createTD(newTR, rowData.familyOwns);
+          createTD(newTR, rowData.special);
+          document.getElementById("summaryTable").appendChild(newTR);
+        });
+      }
+
+      function createDivs() {
+        var i = 0;
+        investments.forEach(rowData => {
+          var newPadDiv = document.createElement("div");
+          newPadDiv.className = "padOnePercent";
+          document.body.appendChild(newPadDiv);
+
+          var newContentDiv = document.createElement("div");
+          newContentDiv.className = "content";
+
+          var newH0CenterDiv = document.createElement("div");
+          newH0CenterDiv.className = "h0-center";
+          newH0CenterDiv.appendChild(document.createTextNode(rowData.name));
+          newContentDiv.appendChild(newH0CenterDiv);
+
+          var netWorth;
+          if(null === rowData.worth) {
+            netWorth = "$" + calculateCompoundInterest(50000, rowData.rate * 100, 40);
+          } else if("*" === rowData.worth) {
+            netWorth = "$" + calculateCompoundInterest(50000, rowData.rate * 100, 40) + "*";
+          } else {
+            netWorth = rowData.worth;
+          }
+
+          var newH1CenterGreenDiv = document.createElement("div");
+          newH1CenterGreenDiv.className = "h1-center-green";
+          newH1CenterGreenDiv.appendChild(document.createTextNode(netWorth));
+          newContentDiv.appendChild(newH1CenterGreenDiv);
+
+          var newH1CenterBlueDiv = document.createElement("div");
+          newH1CenterBlueDiv.className = "h1-center-blue";
+          newH1CenterBlueDiv.appendChild(document.createTextNode(rowData.rate * 100 + "%"));
+          newContentDiv.appendChild(newH1CenterBlueDiv);
+
+          var newH3CenterDiv = document.createElement("div");
+          newH3CenterDiv.className = "h3-center";
+          newH3CenterDiv.appendChild(document.createTextNode(rowData.special));
+          newContentDiv.appendChild(newH3CenterDiv);
+
+          var newCanvas = document.createElement("canvas");
+          newCanvas.id = "investment-canvas-" + i;
+          newContentDiv.appendChild(newCanvas);
+ 
+          document.body.appendChild(newContentDiv);
+
+          createCompoundInterestGraph("investment-canvas-" + i, 50000, rowData.rate * 100, 40);
+          
+          i++;
+        });
+      }
+
+      function init() {
+        investments.sort((a, b) => {
+          return b.rate - a.rate;
+        });
+        createRows();
+        createDivs();
+      }
+    </script>
+  </head>
+  <body onload="init()">
+    <div class="padOnePercent"></div>
+    <div class="content">
+      <div class="h0-center-blue">TOP CHEF JR. 2023</div>
+      <div class="h0-center">*** Rachel Johnston ***</div>
+      <div class="h0-center-blue">WINNER!</div>
+      <div style="text-align: center;"><img src="images/rachel-wins.jpg" /></div>
+      <div class="h0-center-green">$50,000 Prize</div>
+      <div class="br"></div>
+      <hr />
+      <div class="br"></div>
+      <div class="h2-center-blue">Rachel will invest the $50,000</div>
+    </div>
+    <div class="br"></div>
+    <div class="br"></div>
+    <div class="br"></div>
+    <div class="padOnePercent"></div>
+    <div class="content">
+      <div style="text-align: center;"><img src="images/einstein-interest.jpg" /></div>
+    </div>
+    <div class="br"></div>
+    <div class="br"></div>
+    <div class="br"></div>
+    <div class="padOnePercent"></div>
+    <div class="content">
+      <div class="br"></div>
+      <table id="summaryTable">
+        <tr>
+          <td style="background-color: blue; color: white; font-weight: bold;">Name</td>
+          <td style="background-color: blue; color: white; font-weight: bold;">Rate</td>
+          <td style="background-color: blue; color: white; font-weight: bold;">Worth after 40</td>
+          <td style="background-color: blue; color: white; font-weight: bold;">Taxes</td>
+          <td style="background-color: blue; color: white; font-weight: bold;">Fees</td>
+          <td style="background-color: blue; color: white; font-weight: bold;">Family Owns</td>
+          <td style="background-color: blue; color: white; font-weight: bold;">Special</td>
+        </tr>
+      </table>
+      <div class="br"></div>
+    </div>
+    <div class="padOnePercent"></div>
+    <div class="br"></div>
+    <div class="br"></div>
+    <div class="br"></div>
+    <div class="padOnePercent"></div>
+  </body>
+</html>
